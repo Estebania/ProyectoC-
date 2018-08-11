@@ -1,0 +1,5 @@
+/home/hikary/Prototipo/Prototipo/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/hikary/Prototipo/Prototipo/bin/Debug/Prototipo.exe.mdb
+/home/hikary/Prototipo/Prototipo/bin/Debug/Prototipo.exe
+/home/hikary/Prototipo/Prototipo/obj/x86/Debug/Prototipo.exe
+/home/hikary/Prototipo/Prototipo/obj/x86/Debug/Prototipo.exe.mdb

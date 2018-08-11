@@ -1,0 +1,6 @@
+/home/hikary/ProyectoC--master/Prototipo/Prototipo/obj/x86/Debug/Prototipo.csprojResolveAssemblyReference.cache
+/home/hikary/ProyectoC--master/Prototipo/Prototipo/obj/x86/Debug/Prototipo.csproj.CoreCompileInputs.cache
+/home/hikary/ProyectoC--master/Prototipo/Prototipo/obj/x86/Debug/Prototipo.exe
+/home/hikary/ProyectoC--master/Prototipo/Prototipo/bin/Debug/Prototipo.exe
+/home/hikary/ProyectoC--master/Prototipo/Prototipo/bin/Debug/Prototipo.pdb
+/home/hikary/ProyectoC--master/Prototipo/Prototipo/obj/x86/Debug/Prototipo.pdb
