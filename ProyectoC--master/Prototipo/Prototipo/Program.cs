@@ -8,6 +8,10 @@ namespace Prototipo
 		{
 
 			Usuario.IniciarSeccion();
+
+			//Factura.GenerarReportesFactura();
+			//Producto.insertaProductos();
+			Console.ReadKey();
 		}
 	}
 }

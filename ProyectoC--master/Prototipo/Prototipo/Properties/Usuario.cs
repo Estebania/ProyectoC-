@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using MySql.Data.MySqlClient;
 namespace Prototipo
 {
 	public class Usuario
@@ -19,80 +21,81 @@ namespace Prototipo
 			string claveUsuario = Console.ReadLine();
 
 			List<Usuario> usuarios = Usuario.PreCargarUsuarios();
-			List<Factura> facturas = new List<Factura>();//cuando se conecte a la base de datos se 
-            //se creara un metodo que carge las facturas ya generadas
+
 			var users = usuarios.FindAll(u => u.ClaveUsuario == claveUsuario && u.CodigoUsuario == codUsuario);
 
 			if(users.Count!=0){
 
 				Usuario user = users[0];
-				Menu(user,facturas);
+				Menu(user);
                
 
+			}
+            else
+			{
+				IniciarSeccion();
 			}
 		}
 
 		public static List<Usuario> PreCargarUsuarios(){
-			List<Usuario> usuarios = new List<Usuario>(){
+			List<Usuario> usuarios = new List<Usuario>();
+			MySqlCommand selecionar = new MySqlCommand("select * from Usuarios;", connection.conectar());
 
-				new Usuario (){
-					CodigoUsuario = 1000,
-                    NombreUsuario = "Betania Jimenez",
-                    ClaveUsuario = "PrimerUsuario"
-				},
-				new Usuario (){
-                    CodigoUsuario = 2000,
-                    NombreUsuario = "Catherine Santana",
-                    ClaveUsuario = "SegundoUsuario"
-                },
-				new Usuario (){
-                    CodigoUsuario = 3000,
-                    NombreUsuario = "Starling Contreras",
-                    ClaveUsuario = "TercerUsuario"
-                },
-				new Usuario (){
-                    CodigoUsuario = 4000,
-                    NombreUsuario = "Manuel Mateo",
-                    ClaveUsuario = "CuartoUsuario"
-                },
-				new Usuario (){
-                    CodigoUsuario = 5000,
-                    NombreUsuario = "Kevin Visioso",
-                    ClaveUsuario = "QuintoUsuario"
-                },
-			};
+
+            MySqlDataReader leer = selecionar.ExecuteReader();
+
+            while (leer.Read())
+            {
+				Usuario ur = new Usuario();
+                
+				ur.CodigoUsuario = leer.GetInt32(0);
+				ur.NombreUsuario = leer.GetString(2);
+				ur.ClaveUsuario = leer.GetString(1);
+
+				usuarios.Add(ur);
+
+            }
+
 			return usuarios;
             
+
 		}
 
-		public static void Menu(Usuario user, List<Factura> f){
+		public static void Menu(Usuario user){
 			Console.Clear();
-			Console.WriteLine("1-Facturar\n2-Imprimir reporte de facturas\n3-Salir");
+			Console.WriteLine("1-Facturar\n2-Imprimir reporte de facturas\n3-Agregar cliente\n4-Salir");
             int resp = int.Parse(Console.ReadLine());
 
 
             if (resp == 1)
             {
-                Factura.GenerarFactura(user,f);
+                Factura.GenerarFactura(user);
             }
             else if (resp == 2)
             {
-                Factura.GenerarReportesFactura(user,f);
+				Factura.GenerarReportesFactura();
+				Salir(user);
             }else if (resp == 3)
 			{
-				Salir(user,f);
+				Cliente.AgregarCliente();
+				Salir(user);
+
+			}
+			else if(resp == 4){
+
+				Salir(user);
 			}
             
 		}
-		public static void Salir(Usuario user,List<Factura> f){
+		public static void Salir(Usuario user){
 
             Console.WriteLine("\n\n1-Volver al menu \n2-Salir");
 			int resp = int.Parse(Console.ReadLine());
 
-
+            
             if (resp == 1)
             {
-				Usuario.Menu(user,f);
+				Usuario.Menu(user);
             }
             else if (resp == 2)
             {

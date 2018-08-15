@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MySql.Data.MySqlClient;
 namespace Prototipo
 {
     public class DetalleFactura
@@ -16,15 +17,19 @@ namespace Prototipo
 		List<DetalleFactura> detalleFacturas = new List<DetalleFactura>();
 
 		public static void GuardarDetalle(List<DetalleFactura> df){
-			DetalleFactura detalle = new DetalleFactura();
-			detalle.detalleFacturas = df;
+
+
+            foreach (var i in df)
+			{
+				MySqlCommand insertar = new MySqlCommand(string.Format("insert into DetalleFactura (numeroFactura,nombreProducto,cantidadVendida,precioProducto) values('{0}','{1}',{2},{3}); ", i.NumeroFactura,i.NombreProducto,i.CantidadDelProducto,i.Precio), connection.conectar());
+
+                insertar.BeginExecuteNonQuery();
+
+			}
+
 		}
 
-		public static List<DetalleFactura> PreCargarDetalle(){
 
-			DetalleFactura detalle = new DetalleFactura();
-			return detalle.detalleFacturas;
-		}
 
     }
 }

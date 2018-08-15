@@ -4,3 +4,6 @@
 /home/hikary/ProyectoC--master/Prototipo/Prototipo/bin/Debug/Prototipo.exe
 /home/hikary/ProyectoC--master/Prototipo/Prototipo/bin/Debug/Prototipo.pdb
 /home/hikary/ProyectoC--master/Prototipo/Prototipo/obj/x86/Debug/Prototipo.pdb
+/home/hikary/ProyectoC--master/Prototipo/Prototipo/bin/Debug/MySql.Data.dll
+/home/hikary/ProyectoC--master/Prototipo/Prototipo/bin/Debug/Google.Protobuf.dll
+/home/hikary/ProyectoC--master/Prototipo/Prototipo/bin/Debug/MySql.Data.xml

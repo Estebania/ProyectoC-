@@ -31,6 +31,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="MySql.Data">
+      <HintPath>..\..\..\Descargas\mysql-connector-net-8.0.12-noinstall\v4.5.2\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -40,6 +44,7 @@
     <Compile Include="Properties\Cliente.cs" />
     <Compile Include="Properties\Producto.cs" />
     <Compile Include="Properties\DetalleFactura.cs" />
+    <Compile Include="Properties\Conexion.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
