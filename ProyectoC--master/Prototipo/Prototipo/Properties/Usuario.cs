@@ -82,7 +82,7 @@ namespace Prototipo
 
 			}
 			else if(resp == 4){
-
+				Console.Clear();
 				Salir(user);
 			}
             

@@ -72,12 +72,13 @@ namespace Prototipo
 			Factura f = new Factura();
 			List<Cliente> clientes = Cliente.PreCargarClientes();
 			List<Producto> productos = Producto.PreCargarProductos();
-			List<Cliente> unCliente = new List<Cliente>();
 			List<Factura> facturas = Factura.PrecargarFacturas();
+
+
 			List<DetalleFactura> detalleFacturas = new List<DetalleFactura>();
 			double monto = 0.0;
 
-
+			List<Cliente> unCliente = new List<Cliente>();
 			int cont = 0;
 			do
 			{
@@ -244,10 +245,12 @@ namespace Prototipo
 
 
 		public static List<Factura> PrecargarFacturas(){
+			
 			List<Factura> facturas = new List<Factura>();
-            MySqlCommand selecionar = new MySqlCommand("select * from Productos;", connection.conectar());
 
+            MySqlCommand selecionar = new MySqlCommand("select * from Facturas;", connection.conectar());
 
+           
             MySqlDataReader leer = selecionar.ExecuteReader();
 
             while (leer.Read())

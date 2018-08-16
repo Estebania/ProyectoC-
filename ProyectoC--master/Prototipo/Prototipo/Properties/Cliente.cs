@@ -10,6 +10,11 @@ namespace Prototipo
 		public Cliente ()
 		{
 		}
+		public Cliente(int codigo){
+
+			this.CodigoCliente = codigo;
+		}
+
 		public int CodigoCliente {get;	set;}
 		public string NombreCliente {get;	set;}
 		public int CantidadDeFacturas {get;	set;}
