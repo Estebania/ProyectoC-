@@ -55,7 +55,7 @@ namespace Prototipo
 
             foreach (var i in facturas)
             {
-				Console.WriteLine(i.NumeroFactura + " " + i.UsuarioQueLaGenero + " " + i.NombreCliente + " " + i.FechaDeCreacion+ " "+i.Monto);
+				Console.WriteLine(i.NumeroFactura + " | " + i.UsuarioQueLaGenero + " | " + i.NombreCliente + " | " + i.FechaDeCreacion+ " | 5"+i.Monto);
 
             }
 			
@@ -99,6 +99,7 @@ namespace Prototipo
 
 				if (respuesta == ConsoleKey.S)
 				{//El metodo NuevoCliente permite agregar al nuevo cliente
+					Console.Clear();
 					clientes = Cliente.NuevoCliente();
 					unCliente = unCliente = clientes.FindAll(c => c.CodigoCliente == (clientes.Count));
 				}
@@ -164,10 +165,15 @@ namespace Prototipo
 
 							};
 							monto = (i.Precio*cant) + monto;
-                            
+							detalleFacturas.Add(df);
 						}
-						detalleFacturas.Add(df);
+
 						cp[0].CantidadDisponible = cp[0].CantidadDisponible - cant;
+						Producto.RestarCantidad(cp[0].CodigoDeProducto, cp[0].CantidadDisponible);
+					}else
+					{
+						Console.Clear();
+                        Console.WriteLine("No contamos con esa cantida");
 					}
 
 				}
@@ -176,7 +182,7 @@ namespace Prototipo
 				Console.WriteLine("Otro producto: S/N");
 				resp = char.Parse(Console.ReadLine());
 
-				Producto.RestarCantidad(cp[0].CodigoDeProducto,cp[0].CantidadDisponible);
+
 
 			} while (resp == 'S' || resp =='s');
 
@@ -213,18 +219,33 @@ namespace Prototipo
 		public static void ImprimirFactura(List<DetalleFactura> df,Factura f, int numfact)
 		{
 			Console.Clear();
-            Console.WriteLine("******Factura*****");
+			string mensaje = "";
+			List<Cliente> clientes = Cliente.PreCargarClientes();
 
+			var BCliente = clientes.FindAll(c => c.NombreCliente == f.NombreCliente);
+
+			Cliente unCliente = BCliente[0];
+			mensaje += "Estimad@ " + unCliente.NombreCliente + "<br><br>";
+
+            Console.WriteLine("******Factura*****");
+			mensaje += "******Factura*****<br><br>";
                 Console.WriteLine("Numero de factura      "+numfact);
+			mensaje += "Numero de factura      " + numfact.ToString() + "<br><br>";
 				Console.WriteLine("Nombre del cliente     "+f.NombreCliente);
                 foreach (var j in df)
 				{
 					Console.WriteLine(j.NombreProducto+"   "+j.Precio+"   "+j.CantidadDelProducto);
+				mensaje += j.NombreProducto.ToString() + "   " + j.Precio.ToString() + "   " + j.CantidadDelProducto.ToString() + "<br>";
                     //la variable numero de factura en Detallefactura es solo para trabajar con la base de datos
 				}
 				Console.WriteLine("Monto total: " + f.Monto);
+			mensaje += "Monto total      " + f.Monto.ToString() + "<br><br>";
+
 				Console.WriteLine("Lo atendio: "+ f.UsuarioQueLaGenero);
             
+			mensaje += "Lo atendio    " + f.UsuarioQueLaGenero.ToString() + "<br><br>";
+
+			Cliente.EnviarFactura(unCliente, mensaje);
 
 		}
 		public static void GuardarFactura(Factura facturas){

@@ -6,7 +6,8 @@ namespace Prototipo
 	{
 		public static void Main (string[] args)
 		{
-
+			Console.BackgroundColor = ConsoleColor.Blue;
+			Console.Title = "FacturaSystem";
 			Usuario.IniciarSeccion();
 
 			//Factura.GenerarReportesFactura();
